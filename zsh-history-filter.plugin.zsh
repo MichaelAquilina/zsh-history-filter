@@ -1,6 +1,6 @@
 export HISTORY_FILTER_VERSION="0.1.0"
 
-function _filter_history() {
+function _history_filter() {
     for value in $HISTORY_FILTER_EXCLUDE; do
         if [[ "$1" = *"$value"* ]]; then
             if [[ -z "$HISTORY_FILTER_SILENT" ]]; then
@@ -14,4 +14,4 @@ function _filter_history() {
 }
 
 autoload -Uz add-zsh-hook
-add-zsh-hook zshaddhistory _filter_history
+add-zsh-hook zshaddhistory _history_filter
