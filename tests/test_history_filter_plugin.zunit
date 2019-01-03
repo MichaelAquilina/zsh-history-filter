@@ -1,0 +1,47 @@
+#!/usr/bin/env zunit
+
+@setup {
+    load "../zsh-history-filter.plugin.zsh"
+}
+
+@test 'version exported' {
+    git_version="$(git tag --list | sort | tail -1)"
+    git tag --list
+
+    assert "$HISTORY_FILTER_VERSION" is_not_empty
+    assert "$HISTORY_FILTER_VERSION" same_as "$git_version"
+}
+
+@test 'hooks are loaded by default' {
+    assert '_history_filter' in $zshaddhistory_functions
+}
+
+# NOTE: It seems we cannot rely on zshaddhistory hook to run
+# within zunit so we need to call _history_filter directly instead
+
+@test 'no excludes' {
+    unset HISTORY_FILTER_EXCLUDE
+
+    run _history_filter "anything at all"
+
+    assert "$output" is_empty
+    assert $state equals 0
+}
+
+@test 'excludes correctly' {
+    export HISTORY_FILTER_EXCLUDE=("Bearer" "_KEY")
+
+    run _history_filter "export MY_KEY="SEKRET""
+
+    assert "$output" same_as "Excluding result from history"
+    assert $state equals 2
+}
+
+@test 'excludes correctly - 2' {
+    export HISTORY_FILTER_EXCLUDE=("_KEY")
+
+    run _history_filter "echo hello world"
+
+    assert "$output" is_empty
+    assert $state equals 0
+}
