@@ -13,8 +13,9 @@ Particularly useful for preventing secrets being written.
 Usage
 -----
 
-After installation_, set the environment variable ``HISTORY_FILTER_EXCLUDE`` to an array
-array of keywords file. that will be used to determine when to filter out the command from history.
+After installation_, set the environment variable ``HISTORY_FILTER_EXCLUDE`` to an
+array of keywords file. that will be used to determine when to filter out the
+command from history.
 
 Example:
 
