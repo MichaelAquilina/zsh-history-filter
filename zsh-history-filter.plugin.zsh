@@ -7,10 +7,13 @@ function rewrite_history() {
     local excluded=0
 
     cat $HISTFILE | while read entry; do
-        if ! _matches_filter "$entry"; then
+        # TODO: Doing this per line is very slow!
+        local command="$(echo "$entry" | cut -d ';' -f2-)"
+
+        if ! _matches_filter "$command"; then
             echo "$entry" >> "$new_history"
         else
-            ((excluded = excluded+ 1))
+            ((excluded = excluded + 1))
             printf "\rExcluded $excluded entries"
         fi
     done
