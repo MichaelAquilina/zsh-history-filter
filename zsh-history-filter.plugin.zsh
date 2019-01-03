@@ -1,4 +1,4 @@
-export HISTORY_FILTER_VERSION="0.1.0"
+export HISTORY_FILTER_VERSION="0.2.0"
 
 function _history_filter() {
     for value in $HISTORY_FILTER_EXCLUDE; do
