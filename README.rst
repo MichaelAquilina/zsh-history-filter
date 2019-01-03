@@ -3,12 +3,42 @@ Filter History
 
 |CircleCI| |Version| |GPLv3|
 
-Zsh plugin that filters out commands from being put into your
-permanant history file.
+Zsh plugin that filters out commands from being put into your permanant history.
+Particularly useful for preventing secrets being written.
 
 * Installation_
 * Contributing_
 * `Running Tests`_
+
+Usage
+-----
+
+After installation_, set the environment variable ``HISTORY_FILTER_EXCLUDE`` to an array
+array of keywords file. that will be used to determine when to filter out the command from history.
+
+Example:
+
+::
+
+    export HISTORY_FILTER_EXCLUDE=("_KEY" "Bearer")
+
+Now everytime any of the keywords are contained in a command you execute,
+the command will be written to internal history but be prevented from being written
+to your permanant history file (i.e. your ``HISTFILE``).
+
+In practice what this means is that the command will still be available when you
+press the up and down keys on your keyboard and the ``history`` command - but only
+within the same shell session. As soon as you open another terminal you will find that
+the command does not exist in your history.
+
+For example, using the ``HISTORY_FILTER_EXCLUDE`` value above -
+all of the commands below will be filtered out from permanant history.
+
+::
+
+    curl -H "Authorization: Bearer SEKRETTOKEN" https://api.example.com
+    export SOME_DEVELOPER_KEY="SEKRETKEYVALUE"
+
 
 Installation
 ------------
