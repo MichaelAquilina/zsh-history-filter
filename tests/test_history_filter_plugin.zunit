@@ -33,7 +33,7 @@
 
     run _history_filter "export MY_KEY="SEKRET""
 
-    assert "$output" same_as "Excluding result from history"
+    assert "$output" same_as "Excluding command from history"
     assert $state equals 2
 }
 
