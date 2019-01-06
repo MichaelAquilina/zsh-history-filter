@@ -8,6 +8,7 @@ from being inserted into your permanent history.
 Particularly useful for preventing secrets being written.
 
 * Installation_
+* `Rewrite History`
 * Contributing_
 * `Running Tests`_
 
@@ -70,6 +71,7 @@ oh-my-zsh_
 
 Copy this repository to ``$ZSH_CUSTOM/custom/plugins``, where ``$ZSH_CUSTOM``
 is the directory with custom plugins of oh-my-zsh `(read more) <https://github.com/robbyrussell/oh-my-zsh/wiki/Customization/>`_:
+
 ::
 
     git clone https://github.com/MichaelAquilina/zsh-history-filter.git $ZSH_CUSTOM/plugins/history-filter
@@ -80,6 +82,15 @@ Then add this line to your ``.zshrc``
 ::
 
     plugins=(history-filter $plugins)
+
+Rewrite History
+---------------
+
+Once you install this plugin and specify the patterns you would like to exclude from history, you might
+want to retro-actively apply the the filter to your currently stored history (for e.g. to remove secrets
+from being viewable to anyone who has read access to your history file).
+
+You can do this very simply by running the ``rewrite_history`` command.
 
 Contributing
 ------------
