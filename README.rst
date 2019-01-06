@@ -3,7 +3,8 @@ History Filter
 
 |CircleCI| |Version| |GPLv3|
 
-Zsh plugin that filters out commands from being put into your permanant history.
+zsh plugin that allows you to specify patterns that will automatically exclude commands
+from being inserted into your permanent history.
 Particularly useful for preventing secrets being written.
 
 * Installation_
