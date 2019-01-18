@@ -8,7 +8,7 @@ from being inserted into your permanent history.
 Particularly useful for preventing secrets being written.
 
 * Installation_
-* `Rewrite History`
+* `Rewrite History`_
 * Contributing_
 * `Running Tests`_
 
