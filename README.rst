@@ -16,17 +16,17 @@ Usage
 -----
 
 After installation_, set the environment variable ``HISTORY_FILTER_EXCLUDE`` to an
-array of keywords file. that will be used to determine when to filter out the
+array of keywords that will be used to determine when to filter out the
 command from history.
 
-Example:
+For example:
 
 ::
 
     export HISTORY_FILTER_EXCLUDE=("_KEY" "Bearer")
 
-Now everytime any of the keywords are contained in a command you execute,
-the command will be written to internal history but be prevented from being written
+Now every time any of the keywords that are contained in ``ZSH_HISTORY_EXCLUDE`` are in a command
+you execute, the command will be written to internal history but be prevented from being written
 to your permanant history file (i.e. your ``HISTFILE``).
 
 In practice what this means is that the command will still be available when you
