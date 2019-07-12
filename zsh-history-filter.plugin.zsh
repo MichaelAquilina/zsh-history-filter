@@ -1,4 +1,4 @@
-export HISTORY_FILTER_VERSION="0.4.0"
+export HISTORY_FILTER_VERSION="0.4.1"
 
 # overwrite the history file so that it
 # retro-actively applies the currently set filters
