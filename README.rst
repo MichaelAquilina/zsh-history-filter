@@ -74,14 +74,14 @@ is the directory with custom plugins of oh-my-zsh `(read more) <https://github.c
 
 ::
 
-    git clone https://github.com/MichaelAquilina/zsh-history-filter.git $ZSH_CUSTOM/plugins/history-filter
+    git clone https://github.com/MichaelAquilina/zsh-history-filter.git $ZSH_CUSTOM/plugins/zsh-history-filter
 
 
 Then add this line to your ``.zshrc``
 
 ::
 
-    plugins=(history-filter $plugins)
+    plugins=(zsh-history-filter $plugins)
 
 Rewrite History
 ---------------
