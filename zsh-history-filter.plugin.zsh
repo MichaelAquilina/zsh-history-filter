@@ -7,8 +7,7 @@ function rewrite_history() {
     local excluded=0
 
     while read -r entry; do
-        # TODO: Doing this per line is very slow!
-        local command="$(echo "$entry" | cut -d ';' -f2-)"
+        local command="${entry#*;}"
 
         if ! _matches_filter "$command"; then
             echo "$entry"
