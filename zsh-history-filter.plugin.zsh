@@ -25,7 +25,7 @@ function rewrite_history() {
 function _matches_filter() {
     local value
     for value in $HISTORY_FILTER_EXCLUDE; do
-        if [[ "$1" = *"$value"* ]]; then
+        if [[ "$1" =~ $value ]]; then
             return 0
         fi
     done
