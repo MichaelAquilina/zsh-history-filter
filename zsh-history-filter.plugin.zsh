@@ -13,8 +13,8 @@ function rewrite_history() {
         if ! _matches_filter "$command"; then
             echo "$entry" >> "$new_history"
         else
-            ((excluded = excluded + 1))
-            printf "\rExcluded $excluded entries"
+            ((++excluded))
+            printf "\rExcluded %d entries" excluded
         fi
     done
     printf "\n"
