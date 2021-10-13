@@ -1,4 +1,4 @@
-export HISTORY_FILTER_VERSION="0.4.1"
+export HISTORY_FILTER_VERSION="0.4.2-joesuf4"
 
 # overwrite the history file so that it
 # retro-actively applies the currently set filters
@@ -6,18 +6,18 @@ function rewrite_history() {
     local new_history="$HISTFILE.bak"
     local excluded=0
 
-    cat $HISTFILE | while read entry; do
+    while read -r entry; do
         # TODO: Doing this per line is very slow!
         local command="$(echo "$entry" | cut -d ';' -f2-)"
 
         if ! _matches_filter "$command"; then
-            echo "$entry" >> "$new_history"
+            echo "$entry"
         else
             ((++excluded))
-            printf "\rExcluded %d entries" excluded
+            printf "\rExcluded %d entries" excluded >&2
         fi
-    done
-    printf "\n"
+    done <"$HISTFILE" >"$new_history"
+    printf "\n" >&2
     mv "$new_history" "$HISTFILE"
 }
 
@@ -37,7 +37,7 @@ function _history_filter() {
     if _matches_filter "$1"; then
         if [[ -z "$HISTORY_FILTER_SILENT" ]]; then
             (>&2 printf "Excluding command from history\n")
-            echo pty-driver "off"
+            echo pty-driver "off" >&2
         fi
         return 2
     else
