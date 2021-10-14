@@ -1,4 +1,5 @@
-export HISTORY_FILTER_VERSION="0.4.3-joesuf4"
+export HISTORY_FILTER_VERSION="0.4.4-joesuf4"
+zmodload zsh/pcre
 
 # overwrite the history file so that it
 # retro-actively applies the currently set filters
@@ -24,7 +25,7 @@ function rewrite_history() {
 function _matches_filter() {
     local value
     for value in $HISTORY_FILTER_EXCLUDE; do
-        if [[ "$1" =~ $value ]]; then
+        if [[ "$1" -pcre-match $value ]]; then
             return 0
         fi
     done
