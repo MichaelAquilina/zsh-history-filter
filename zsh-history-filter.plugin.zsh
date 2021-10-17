@@ -36,7 +36,7 @@ function _matches_filter() {
 function _history_filter() {
     if _matches_filter "$1"; then
         if [[ -z "$HISTORY_FILTER_SILENT" ]]; then
-            (>&2 printf "Excluding command from history\n")
+            printf "Excluding command from history\n" >&2
         fi
         return 2
     else
